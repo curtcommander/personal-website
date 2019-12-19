@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <title>Curt Commander - Projects</title>
+    <meta charset="UTF-8" />
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="images/icon.png" />
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!--Bootstrap-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="coverage/bootstrap.min.css" />
+    <!--CSS-->
+    <link rel="stylesheet" href="nav.min.css" />
+    <link rel="stylesheet" href="footer.min.css" />
+    <link rel="stylesheet" href="common.min.css" />
+    <link rel="stylesheet" href="postcards.min.css" />
+    <link rel="stylesheet" href="projects.min.css" />
+    <!--scripts-->
+    <script src="includeHTML.min.js" defer></script>
+    <script src="projects.min.js" defer></script>
+    <script src="captions.min.js" defer></script>
+</head>
+<body>
+<div include-html="nav.html"></div>
+<script src="nav.min.js"></script>
+<div id="container-main" class="container-fluid">
+    <div id="container-images" class="row">
+        <div class="div-images col-12">
+            <div class="img-background">
+                <img src="images/WilmingtonShootings.png" />
+                <div class="caption hide">
+                        <p>This <a href="https://curtcommander.com/WilmingtonShootings/" target="_blank">app</a>features a map of the shootings that have occurred in Wilmington, DE from 2011 to the present. The frontend was designed using HTML, CSS, and JavaScript, while Python scripts were written that collect and update the data in the backend.</p>
+                        <p>The data comes from <a href="https://data.delawareonline.com/webapps/crime/" target="_blank">Wilmington Shootings</a>. Summary statistics and police reports are scraped from this site. Dates and addresses are then parsed out from the police reports, and the addresses are passed to Google’s Geocoding API to find the latitudes and longitudes used to plot the data. A Python script runs daily that updates the app with any new data that gets published on Wilmington Shootings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div include-html="footer.html"></div>
+</body>
+</html>
