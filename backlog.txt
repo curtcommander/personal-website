@@ -1,8 +1,0 @@
-ajax for nav bar
-clean up projects files
-coverage
-minify html
-convert images to next gen formats
-captions not working in career
-projects image not resizing on load
-nav bar for wilmington shootings

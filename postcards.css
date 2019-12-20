@@ -89,7 +89,7 @@
     }
 
     .caption {
-        font-size: 10px;
+        font-size: calc(2% + 1vw);
         font-weight: 400;
         color: white;
         position: absolute;
