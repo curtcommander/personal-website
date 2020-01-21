@@ -15,5 +15,6 @@ function highlightNav() {
         })
     }
 };
+highlightNav();
 $( window ).on('load', highlightNav);
 $( window ).on('resize', highlightNav);

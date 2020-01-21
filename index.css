@@ -29,7 +29,7 @@ p {
     margin-bottom: 0;
 }
 
-#insta3 {
+#insta2 {
     display: none;
 }
 
@@ -44,7 +44,7 @@ p {
         font-size: large;
     }
 
-    #insta3 {
+    #insta2 {
         display: block;
     }
 }

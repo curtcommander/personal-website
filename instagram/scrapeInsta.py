@@ -8,7 +8,7 @@ import pandas as pd
 from PIL import Image 
 import re
 
-os.chdir('/var/www/html/instagram/images_insta')
+os.chdir('/var/www/html/PersonalWebsite/instagram/images_insta')
 
 username = 'curtcommander'
 

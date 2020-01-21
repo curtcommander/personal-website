@@ -4,7 +4,7 @@ def update_container_images(index=False):
     import pandas as pd
         
     # get data on instagram posts
-    os.chdir('/var/www/html/instagram')
+    os.chdir('/var/www/html/PersonalWebsite/instagram')
     data_posts = pd.read_csv('data_posts.csv').iloc[:,1:]
     
     # read html file, num_files parameter
@@ -29,11 +29,11 @@ def update_container_images(index=False):
     base_tag = '<div class="'
     if classes != '':
             base_tag += classes
-    base_tag +='">\n<div class="img-background">\n'
+    base_tag +='" id="insta[[!NUM]]">\n<div class="img-background">\n'
     
     # loop through posts 
     for i in range(num_files):
-        div_tag = base_tag
+        div_tag = base_tag.replace('[[!NUM]]',str(i))
         # img tag
         img_tag = '<img src="instagram/images_insta/insta'+str(i)+'.jpg">'
         div_tag += img_tag+'\n'
