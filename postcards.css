@@ -9,7 +9,6 @@
 
 #container-images img {
     width: 100%;
-    height: auto;
 }
 
 .div-images {
@@ -75,7 +74,6 @@
     .img-background {
         background-color: #2A3457;
     }
-
     #container-main img {
         margin-bottom: 0;
         border-radius: 0;

@@ -16,26 +16,79 @@
     <link rel="stylesheet" href="footer.min.css" />
     <link rel="stylesheet" href="common.min.css" />
     <link rel="stylesheet" href="postcards.min.css" />
-    <link rel="stylesheet" href="projects.min.css" />
     <!--scripts-->
     <script src="includeHTML.min.js" defer></script>
-    <script src="projects.min.js" defer></script>
-    <script src="captions.min.js" defer></script>
+    <!--<script src="captions.min.js" defer></script>-->
 </head>
 <body>
 <div include-html="nav.html"></div>
 <script src="nav.min.js"></script>
 <div id="container-main" class="container-fluid">
-    <div id="container-images" class="row">
-        <div class="div-images col-12">
-            <div class="img-background">
-                <img src="images/WilmingtonShootings.png" />
-                <div class="caption hide">
-                        <p>This <a href="https://curtcommander.com/WilmingtonShootings/" target="_blank">app</a> features a map of the shootings that have occurred in Wilmington, DE from 2011 to the present. The frontend was designed using HTML, CSS, and JavaScript, while Python scripts were written that collect and update the data in the backend.</p>
-                        <p>The data comes from <a href="https://data.delawareonline.com/webapps/crime/" target="_blank">Wilmington Shootings</a>. Summary statistics and police reports are scraped from this site. Dates and addresses are then parsed out from the police reports, and the addresses are passed to Google’s Geocoding API to find the latitudes and longitudes used to plot the data. A Python script runs daily that updates the app with any new data that gets published on Wilmington Shootings.</p>
+    <div id="container-images" class="row" style="margin-bottom: 0;">
+        <div class="div-images col-12 col-lg-6">
+            <a id="link-pypi" href="https://pypi.org/project/webd/" target="_blank">
+                <div id="webd-background" class="img-background">
+                    <img id="logo" src="images/python.svg"/>
                 </div>
+            </a>
+            <div class="info">
+                webd<br/><i>A Python package for developing and optimally deploying HTML</i><br/>
             </div>
         </div>
+        <div class="div-images col-12 col-lg-6">
+            <a href="https://curtcommander.com/WilmingtonShootings/" target="_blank">
+                <div class="img-background">
+                    <img id="wilm-img" src="images/WilmingtonShootings.png"/>
+                </div>
+            </a>
+            <div class="info">
+                Wilmington Shootings<br /><i>A web app visualizing data on the shootings that have occurred in Wilmington, DE</i><br />
+            </div>
+        </div>
+        <script>
+            function adjustPy() {
+                h = $('#wilm-img').outerHeight(true);
+                $('#webd-background').css('height', h);
+                w = $('#logo').innerHeight();
+                $('#logo').css('width', w);
+            }
+            adjustPy();
+            $( document ).ready(adjustPy);
+            $( window ).resize(adjustPy);
+        </script>
+    </div>
+    <style>
+        #link-pypi {
+            color: black;
+        }
+        #webd-background {
+            padding: 10%;
+            position: relative;
+            background: #3774A6;
+            background-image:
+            repeating-linear-gradient(-45deg,
+                transparent,
+                transparent 40px,
+                #FFD756 40px,
+                #FFD756 43px),
+            repeating-linear-gradient(45deg,
+                transparent,
+                transparent 20px,
+                #FFD756 20px,
+                #FFD756 21px);
+        }
+        #logo {
+            display: block;
+            margin: auto;
+            padding: 2vh;
+            height: 100% !important;
+            background: #2A3457;
+            background: white;
+            border: solid #FFD756 2px;
+            border-radius: 10px !important;
+            box-shadow: 3px 3px;
+        }
+        </style>
     </div>
 </div>
 <div include-html="footer.html"></div>
