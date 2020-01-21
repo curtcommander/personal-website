@@ -42,6 +42,7 @@ for edge in edges:
     # captions
     try:
         caption = node['edge_media_to_caption']['edges'][0]['node']['text']
+        caption = caption.split('\n')[0].rstrip('.')
         hashtags = re.findall('#.*?(?=[ #]|$)',caption)
         if len(hashtags) > 0:
             for hashtag in hashtags:
@@ -81,6 +82,5 @@ for i in data_posts.index:
         img = img.crop((crop_val, 0, crop_val+height, height))
         img.save(filename)
     img.close()
-            
-os.chdir('..')
-data_posts.to_csv('data_posts.csv', index=False)
+
+data_posts.to_csv('../data_posts.csv', index=False)
