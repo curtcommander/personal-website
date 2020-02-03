@@ -1,5 +1,4 @@
-
-//taken from postcards.js (different breakpoint)
+// taken from postcards.js (different breakpoint)
 function switchLayout() {
     if ($(window).outerWidth(true) >= 768) {
         $( '.caption' ).removeClass('hide');
@@ -27,12 +26,12 @@ function adjust() {
         h = h_window - nav - footer - p;
         $( '#container-images img' ).height(h);
 
-        $( '.caption').width($( '#container-images img').width());
-        $( '.img-background' ).width($( '#container-images img').width());
+        $( '.caption').width($( '#container-images img' ).width());
+        $( '.img-background' ).width($( '#container-images img' ).width());
         
     } else {
         $( '#container-images img' ).height( 'auto' );
-        $( '.caption').width('initial');
+        $( '.caption' ).width('initial');
         $( '.img-background' ).width( 'initial' );
         $( '.img-background' ).unbind( 'mouseenter' ).unbind( 'mouseleave' );
     }  
