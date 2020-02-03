@@ -51,7 +51,9 @@
                     $('#webd-background').css('height', h);
                 }
                 w = $('#logo').outerHeight();
-                $('#logo').css('width', w); 
+                if (w != 0) {
+                    $('#logo').css('width', w);
+                }
             }
             $( document ).ready(adjustPy);
             $( window ).on('load', adjustPy);
