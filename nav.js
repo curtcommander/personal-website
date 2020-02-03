@@ -17,4 +17,5 @@ function highlightNav() {
 };
 highlightNav();
 $( document ).ready(highlightNav);
+$( window ).on('load', highlightNav);
 $( window ).on('resize', highlightNav);

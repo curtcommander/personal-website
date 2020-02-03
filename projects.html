@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="postcards.min.css" />
     <!--scripts-->
     <script src="includeHTML.min.js" defer></script>
-    <!--<script src="captions.min.js" defer></script>-->
 </head>
 <body>
 <div include-html="nav.html"></div>
@@ -49,11 +48,12 @@
             function adjustPy() {
                 h = $('#wilm-img').outerHeight(true);
                 $('#webd-background').css('height', h);
-
+            
                 w = $('#logo').outerHeight();
                 $('#logo').css('width', w); 
             }
             $( document ).ready(adjustPy);
+            $( window ).on('load', adjustPy);
             $( window ).resize(adjustPy);
         </script>
     </div>
