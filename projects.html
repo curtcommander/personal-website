@@ -47,8 +47,9 @@
         <script>
             function adjustPy() {
                 h = $('#wilm-img').outerHeight(true);
-                $('#webd-background').css('height', h);
-            
+                if ( h != 0) {
+                    $('#webd-background').css('height', h);
+                }
                 w = $('#logo').outerHeight();
                 $('#logo').css('width', w); 
             }
