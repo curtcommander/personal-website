@@ -59,7 +59,6 @@
     z-index: 99;
     pointer-events: none;
     min-width: 100%;
-    display: none;
 }
 
 @media only screen and (min-width: 576px) {
@@ -69,6 +68,14 @@
 
     .div-images {
         padding: 0 7.5px;
+    }
+
+    .img-background {
+        background-color: #f2eaed;
+    }
+    
+    .caption {
+        display: none;
     }
 
     .info i:first-child {
