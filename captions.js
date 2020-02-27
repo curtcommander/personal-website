@@ -1,3 +1,9 @@
+// add blue background to image and display caption text
+$( window ).on('load', function() {
+    $( '.img-background' ).css('background-color', '#2a3457');
+    $( '.caption' ).css('display', 'unset');
+});
+
 //toggle image selection
 var events = 'click touch'
 function toggleCaption(t) {

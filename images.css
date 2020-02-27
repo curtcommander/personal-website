@@ -18,7 +18,7 @@
 }
 
 .img-background {
-    background-color: #2A3457;
+    background-color: #f2eaed;
     position: relative;
     text-align: center;
 }
@@ -59,6 +59,7 @@
     z-index: 99;
     pointer-events: none;
     min-width: 100%;
+    display: none;
 }
 
 @media only screen and (min-width: 576px) {
