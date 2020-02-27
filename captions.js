@@ -1,10 +1,4 @@
-// add blue background to image and display caption text
-$( window ).on('load', function() {
-    $( '.img-background' ).css('background-color', '#2a3457');
-    $( '.caption' ).css('display', 'unset');
-});
-
-//toggle image selection
+// toggle image selection
 var events = 'click touch'
 function toggleCaption(t) {
     if (t.hasClass('clicked')) {
@@ -14,8 +8,17 @@ function toggleCaption(t) {
         t.addClass('clicked');
     }
 }
+
+var flagCaption = false;
 $( document ).ready(function() {
     $( '.div-images img' ).on(events, function(e) {
+        // add image background and display caption text
+        if (!flagCaption) {
+            $( '.img-background' ).css('background-color', '#2a3457');
+            $( '.caption' ).css('display', 'unset');
+            flagCaption = true;
+        }
+
         toggleCaption($(e.target));
     });
 })
