@@ -50,7 +50,7 @@
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 #container-main p {
@@ -69,10 +69,6 @@
 
     .div-images:nth-last-child(2) {
         margin-bottom: 0;
-    }
-
-    .img-background {
-        background-color: #2A3457;
     }
     
     #container-main img {
@@ -95,6 +91,7 @@
         top: 0;
         z-index: 99;
         pointer-events: none;
+        display: none;
     }
 
     #container-main p:first-of-type {

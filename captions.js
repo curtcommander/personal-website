@@ -13,8 +13,7 @@ var flagCaption = false;
 $( document ).ready(function() {
     $( '.div-images img' ).on(events, function(e) {
         // add image background and display caption text
-        if ((!flagCaption) && ($(window).outerWidth(true) >= 992)) {
-            console.log('fired');
+        if (!flagCaption) {
             $( '.img-background' ).css('background-color', '#2a3457');
             $( '.caption' ).css('display', 'unset');
             flagCaption = true;

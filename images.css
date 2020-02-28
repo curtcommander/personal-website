@@ -52,6 +52,7 @@
 .caption {
     position: absolute;
     top: 50%;
+    left: 0;
     color: white;
     font-weight: 400;
     font-size: 15px;
@@ -73,7 +74,7 @@
     .img-background {
         background-color: #f2eaed;
     }
-    
+
     .caption {
         display: none;
     }

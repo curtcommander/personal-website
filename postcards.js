@@ -1,8 +1,10 @@
 function switchLayout() {
     if (window.innerWidth >= 992) {
-        $( '.caption' ).removeClass('hide');
+        //$( '.caption' ).removeClass('hide');
+        $('.img-background > img:not(.clicked)').parent().parent().contents('.caption').removeClass('hide')
     } else {
-        $( '.caption' ).addClass('hide');
+        //$( '.caption' ).addClass('hide');
+        $('.img-background > img:not(.clicked)').parent().parent().contents('.caption').addClass('hide')
     }
 }
 
