@@ -2,7 +2,7 @@ var pages = ['career', 'projects', 'gallery'];
 function highlightNav() {
     if ($( window ).outerWidth(true) >= 576) {  
         for (p=0; p<pages.length; p++) {
-            if (window.location.href.search(pages[p]+'.html') != -1) {
+            if (window.location.href.search(pages[p]) != -1) {
                 if ($( '#'+pages[p]+'> a' ).length == 1) {
                     $( '#'+pages[p]+'> a' ).css({
                         'font-weight' : '650' 
