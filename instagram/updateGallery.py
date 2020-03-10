@@ -4,7 +4,7 @@ def update_container_images(index=False):
     import pandas as pd
         
     # get data on instagram posts
-    os.chdir('/var/www/html/PersonalWebsite/instagram')
+    os.chdir('/var/www/curtcommander.com/html/PersonalWebsite/instagram')
     data_posts = pd.read_csv('data_posts.csv').iloc[:,1:]
     
     # read html file, num_files parameter

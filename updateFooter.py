@@ -4,7 +4,7 @@ import re
 
 current_year = str(dt.datetime.now().year)
 
-path = '/var/www/html/PersonalWebsite/'
+path = '/var/www/curtcommander.com/html/PersonalWebsite/'
 
 with open(path+'footer.html', 'r') as f:
     html = f.read()
