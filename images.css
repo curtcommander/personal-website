@@ -82,9 +82,4 @@
     .info i:first-child {
         font-size: 13px;
     }
-
-    .div-images:nth-last-child(2) {
-        margin-bottom: 0;
-    }
-    
 }
