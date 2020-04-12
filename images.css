@@ -13,10 +13,6 @@
     margin-bottom: 15px;
 }
 
-.div-images:last-of-type {
-    /*margin-bottom: 0;*/
-}
-
 .img-background {
     background-color: #f2eaed;
     position: relative;
