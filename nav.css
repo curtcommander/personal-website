@@ -10,6 +10,11 @@ nav {
 .nav-item {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
+    padding: 8px 0;
+}
+
+.nav-item:not(:last-of-type) {
+    border-bottom: dotted 1px;
 }
 
 .navbar-brand, .navbar-brand:hover {
@@ -68,6 +73,14 @@ button {
 
 @media only screen and (min-width: 576px) {
 
+    .nav-item {
+        padding: 0.5rem 0;
+    }
+    
+    .nav-item:not(:last-of-type) {
+        border-bottom: none;
+    }
+    
     .nav-item:hover {
         color: white;    
     }
