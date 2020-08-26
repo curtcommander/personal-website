@@ -2,98 +2,51 @@
 <html>
 <head>
     <title>Curt Commander - Projects</title>
-    <meta charset="UTF-8" />
-    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="images/icon.png" />
+    <meta charset="UTF-8"/>
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="images/headshot-icon.png"/>
     <!--jQuery-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!--Bootstrap-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="coverage/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-coverage.min.css" type='text/css'/>
     <!--CSS-->
-    <link rel="stylesheet" href="nav.min.css" />
-    <link rel="stylesheet" href="footer.min.css" />
-    <link rel="stylesheet" href="common.min.css" />
-    <link rel="stylesheet" href="postcards.min.css" />
+    <link rel="stylesheet" href="css/nav.css" type='text/css'/>
+    <link rel="stylesheet" href="css/footer.css" type='text/css'/>
+    <link rel="stylesheet" href="css/common.css" type='text/css'/>
+    <link rel="stylesheet" href="css/postcards.css" type='text/css'/>
     <!--scripts-->
-    <script src="includeHTML.min.js" defer></script>
+    <script src="js/includeHTML.js" defer></script>
 </head>
 <body>
-<div include-html="nav.html"></div>
-<script src="nav.min.js"></script>
+<div include-html="html/nav.html"></div>
+<script src="js/nav.js"></script>
 <div id="container-main" class="container-fluid">
-    <div id="container-images" class="row" style="margin-bottom: 0;">
+    <div id="container-images" class="row">
         <div class="div-images col-12 col-lg-6">
-            <a id="link-pypi" href="https://pypi.org/project/webd/" target="_blank">
-                <div id="webd-background" class="img-background">
-                    <img id="logo" src="images/python.svg" style="height: 100px; width: 100px;"/>
+            <a href="https://www.npmjs.com/package/utils-google-drive">
+                <div class="img-background">
+                    <img id="wilm-img" src="images/utils-google-drive.png"/>
                 </div>
             </a>
             <div class="info">
-                webd<br/><i>A Python package for developing and optimally deploying HTML</i><br/>
+                utils-google-drive<br/><i>A simple and flexible Node.js package for interacting with Google Drive</i><br/>
             </div>
         </div>
         <div class="div-images col-12 col-lg-6">
-            <a href="https://curtcommander.com/WilmingtonShootings/" target="_blank">
+            <a href="https://curtcommander.com/WilmingtonShootings/">
                 <div class="img-background">
                     <img id="wilm-img" src="images/WilmingtonShootings.png"/>
                 </div>
             </a>
             <div class="info">
-                Wilmington Shootings<br /><i>A web app visualizing data on shootings in Wilmington, DE</i><br />
+                Wilmington Shootings<br/><i>A web app visualizing data on shootings in Wilmington, DE</i><br/>
             </div>
         </div>
-        <script>
-            function adjustPy() {
-                h = $('#wilm-img').outerHeight(true);
-                if ( h != 0) {
-                    $('#webd-background').css('height', h);
-                }
-                w = $('#logo').outerHeight();
-                if (w != 0) {
-                    $('#logo').css('width', w);
-                }
-            }
-            $( document ).ready(adjustPy);
-            $( window ).on('load', adjustPy);
-            $( window ).resize(adjustPy);
-        </script>
     </div>
-    <style>
-        #link-pypi {
-            color: black;
-        }
-        #webd-background {
-            padding: 10%;
-            position: relative;
-            background: #3774A6;
-            background-image:
-            repeating-linear-gradient(-45deg,
-                transparent,
-                transparent 40px,
-                #FFD756 40px,
-                #FFD756 43px),
-            repeating-linear-gradient(45deg,
-                transparent,
-                transparent 20px,
-                #FFD756 20px,
-                #FFD756 21px);
-        }
-        #logo {
-            display: block;
-            height: 100% !important;
-            margin: auto;
-            padding: 2vh;
-            background: #2A3457;
-            background: white;
-            border: solid #FFD756 2px;
-            border-radius: 10px !important;
-            box-shadow: 3px 3px;
-        }
-        </style>
     </div>
 </div>
-<div include-html="footer.html"></div>
+<div include-html="html/footer.html"></div>
 </body>
 </html>

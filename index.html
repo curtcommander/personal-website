@@ -4,62 +4,31 @@
       <title>Curt Commander</title>
       <meta charset="UTF-8"/>
       <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1"/>
-      <link rel="icon" href="images/icon.png"/>
+      <link rel="icon" href="images/headshot-icon.png"/>
       <!--jQuery-->
       <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
       <!--Bootstrap-->
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-      <link rel="stylesheet" href="coverage/bootstrap.min.css"/>
+      <link rel="stylesheet" href="css/bootstrap-coverage.min.css" type='text/css'/>
       <!--CSS-->
-      <link rel="stylesheet" href="nav.min.css"/>
-      <link rel="stylesheet" href="footer.min.css"/>
-      <link rel="stylesheet" href="common.min.css"/>
-      <link rel="stylesheet" href="images.min.css"/>
-      <link rel="stylesheet" href="index.min.css"/>
+      <link rel="stylesheet" href="css/nav.css" type='text/css'/>
+      <link rel="stylesheet" href="css/footer.css" type='text/css'/>
+      <link rel="stylesheet" href="css/common.css" type='text/css'/>
+      <link rel="stylesheet" href="css/index.css" type='text/css'/>
       <!--scripts-->
-      <script src="includeHTML.min.js" defer></script>
-      <script src="captions.min.js" defer></script>
+      <script src="js/includeHTML.js" defer></script>
+      <script src="js/captions.js" defer></script>
     </head>
     <body>
-      <div include-html="nav.html"></div>
-      <script src="nav.min.js"></script>
+      <div include-html="html/nav.html"></div>
+      <script src="js/nav.js"></script>
       <div id="container-main" class="container-fluid">
         <img id="headshot" src="images/headshot.jpg"/>
-        <p id="title">Economics | Business | Technology</p>
-        <p><i>Returned Peace Corps Volunteer (CII-14 Colombia)</i></p>
-        <p id="instagram-title">Recent Instagram Posts</p>
-        <div id="container-images" class="row">
-<div class="div-images col-12 col-sm-6 col-md-4" id="insta0">
-<div class="img-background">
-<img src="instagram/images_insta/insta0.jpg">
-<div class="caption">I'm glad I got to bring two kids from my site to Camp Hero 2020. HERO is an organization that works with teenage boys in Colombia, and this year's camp was a good mix of fun activities and important discussions. For both of my campers, this was only their second time visiting a place outside of their hometown</div>
-</div>
-<div class="info">
-Baranoa, colombia<br>
-<i>01/13/2020</i>
-</div>
-</div><div class="div-images col-12 col-sm-6 col-md-4" id="insta1">
-<div class="img-background">
-<img src="instagram/images_insta/insta1.jpg">
-<div class="caption">5am Colombian winter wonderland featured games, a dance competition, and hot chocolate</div>
-</div>
-<div class="info">
-Magdalena, Colombia<br>
-<i>12/08/2019</i>
-</div>
-</div><div class="div-images col-12 col-sm-6 col-md-4" id="insta2">
-<div class="img-background">
-<img src="instagram/images_insta/insta2.jpg">
-<div class="caption">If you ever go to Tayrona National Park, be sure to look up</div>
-</div>
-<div class="info">
-Tayrona Natural Park<br>
-<i>09/29/2019</i>
-</div>
-</div>
-</div>
-</div>
-<div include-html="footer.html"></div>
+        <p class="title">Developer with Business Knowledge</p>
+        <p class='title'>Returned Peace Corps Volunteer (Colombia)</p>
+        <p><i>I'm passionate about building things and love talking about the projects I've been working on. Currently, I'm lending my services to TCP Global, a non-profit that funds microloan programs internationally. The solution I've been developing for this organization includes overhauling their existing data collection template, building a database, writing scripts connecting the database to the organization’s files in Google Drive, and developing reports on the microloan programs that the organization funds.</i></p>
+      </div>
+      <div include-html="html/footer.html"></div>
     </body>
   </html>
