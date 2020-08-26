@@ -14,7 +14,7 @@ nav {
 }
 
 .nav-item:not(:last-of-type) {
-    border-bottom: dotted 1px;
+    border-bottom: solid 1px;
 }
 
 .navbar-brand, .navbar-brand:hover {
