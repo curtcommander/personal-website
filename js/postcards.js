@@ -16,8 +16,13 @@ window.addEventListener('resize', function() {
 
 // toggle caption when image clicked (smaller screens)
 $( '.div-images' ).click(function() {
+    const thisCaption = $(this).find('.caption');
     if (window.innerWidth < 992 ) {
-        $(this).find('.caption').toggleClass('hide');
-        $(this).find('.info').toggleClass('expanded');
+         if (thisCaption.hasClass('hide')) {
+            $( '.caption' ).addClass('hide');
+            thisCaption.removeClass('hide');
+         } else {
+            thisCaption.addClass('hide');
+         }
     }
 })

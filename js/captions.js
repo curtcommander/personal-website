@@ -11,27 +11,28 @@ function toggleCaption(t) {
 
 var flagCaption = false;
 $( document ).ready(function() {
-    $( '.div-images img' ).on(events, function(e) {
+    $( '.div-images' ).on(events, function(e) {
         // add image background and display caption text
         if (!flagCaption) {
             $( '.img-background' ).css('background-color', '#2a3457');
             $( '.caption' ).css('display', 'unset');
             flagCaption = true;
         }
-
-        toggleCaption($(e.target));
+        toggleCaption($(this).find('img'));
     });
 })
 
 // unselect image
 $( '*' ).on(events, function(e) {
-    if (e.target.nodeName != 'IMG') {
-        $( '.div-images img' ).removeClass('clicked');
+    window.e = e;
+    if (e.target.nodeName != 'IMG' && e.target.classList[0] !== 'info') {
+       $( '.div-images img' ).removeClass('clicked');
     }
 })
 
 // adjust caption heights
 function adjustCaptionHeight() {
+    console.log('adjustCaptionHeight fired')
     var h_img = $( '.div-images img' ).height();
     $( '.caption' ).each(function () {
         cap = $(this);
@@ -41,8 +42,11 @@ function adjustCaptionHeight() {
 }
 $( window ).on('load',adjustCaptionHeight);
 var width = $(window).width(), height = $(window).height();
-window.addEventListener('resize', function() {
-    if($(window).width() != width || $(window).height() != height) {
+$(window).resize(function() {
+    setTimeout(function() {
         adjustCaptionHeight();
-    }
+        if($(window).width() != width || $(window).height() != height) {
+            adjustCaptionHeight();
+        }
+    }, 10);
 });
