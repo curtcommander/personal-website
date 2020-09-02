@@ -1,2 +1,2 @@
 # Personal Website
-A responsive, mobile-friendly [website](https://curtcommander.com) highlighting my career and the projects I've worked on.
+A personal website highlighting my career and some of the projects I've worked on. Website is located at [curtcommander.com](https://curtcommander.com).
