@@ -32,3 +32,18 @@ footer p {
     line-height: 3vh;
     text-align: center;
 }
+
+footer a {
+    color: white;
+    font-weight: 400;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 576px) {
+    footer p {
+        margin-top: 2px;
+    }
+}
