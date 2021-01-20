@@ -1,0 +1,31 @@
+version: 0.2
+        
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+      python: 3.x
+    commands:
+      - echo Installing terser...
+      - npm install -g terser
+      - echo Installing clean-css-cli...
+      - npm install -g clean-css-cli
+  build:
+    commands:
+      - echo Build started on `date`
+      - python3 updateFooter.py
+      - bash minify.sh
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - index.html
+    - resume_curt_commander.pdf
+    - career.html
+    - projects.html
+    - html/*
+    - css/*
+    - js/*
+    - icons/*
+    - images/*
