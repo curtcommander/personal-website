@@ -1,7 +1,3 @@
 __pycache__/
 notes.txt
-coverage/
-resume_curt_commander.docx
-
-images/headshot.jpg
-images/headshot-icon.png
+deploy_s3.sh
