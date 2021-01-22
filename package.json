@@ -1,0 +1,22 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "A personal website highlighting my career and some of the projects I've worked on.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curtcommander/personal-website.git"
+  },
+  "author": "Curt Commander",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/curtcommander/personal-website/issues"
+  },
+  "homepage": "https://github.com/curtcommander/personal-website#readme",
+  "dependencies": {
+    "aws-sdk": "^2.830.0"
+  }
+}
