@@ -1,15 +1,20 @@
 <nav class="navbar navbar-expand-sm fixed-top">
-    <a class="navbar-brand" href="/">Curt Commander</a>
+    <div id="container-language">
+        <i><a id="language" onClick="switchLanguage()">Español</a></i>
+    </div>
+    <div id="container-brand" class="col-4">
+        <a id="brand" class="navbar-brand" href="/">Curt Commander</a>
+    </div>
     <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse col-lg-4" id="navbarNavAltMarkup">
         <ul class="navbar-nav ml-auto">
-            <li id="career" class="nav-item active">
-                <a class="nav-item nav-link active" href="career">Career</a>
+            <li>
+                <a id="link-career" class="nav-item nav-link active" href="career"></a>
             </li>
-            <li id="projects" class="nav-item active">
-                <a class="nav-item nav-link active" href="projects">Projects</a>
+            <li>
+                <a id="link-projects" class="nav-item nav-link active" href="projects"></a>
             </li>
         </ul>
     </div>

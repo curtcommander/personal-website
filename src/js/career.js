@@ -54,7 +54,7 @@ $( document ).ready(function() {
 // unselect image
 $( '*' ).on(events, function(e) {
     window.e = e;
-    if (e.target.nodeName != 'IMG' && e.target.classList[0] !== 'info') {
+    if (e.target.nodeName !== 'IMG' && e.target.classList[0] !== 'info' && e.target.id !== 'language' ) {
        $( '.div-images img' ).removeClass('clicked');
     }
 })

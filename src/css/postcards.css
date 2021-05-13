@@ -22,6 +22,17 @@
     margin-bottom: 0;
 }
 
+.caption {
+    font-size: 16px;
+    font-weight: 350;
+    color: #2A3457;
+    text-align: center;
+}
+
+.caption p {
+    margin: 4.5px 12px 12px;
+}
+
 .info {
     font-size: 18px;
     background-color: white;
@@ -33,8 +44,12 @@
     text-align: center;
 }
 
-.expanded {
-    padding-bottom: 0;
+.info p:first-child {
+    margin-bottom: 4px;
+}
+
+.info p:last-child {
+    margin-bottom: 0;
 }
 
 .info i {
@@ -42,19 +57,12 @@
     font-weight: 350;
 }
 
-.caption {
-    font-size: 16px;
-    font-weight: 350;
-    color: #2A3457;
-    text-align: center;
+.expanded {
+    padding-bottom: 0;
 }
 
 .hide {
     display: none !important;
-}
-
-#container-main p {
-    margin: 4.5px 12px 12px;
 }
 
 @media only screen and (min-width: 992px) {
