@@ -2,7 +2,6 @@
 #container-images {
     padding: 0;
     margin: 15px;
-    width: calc(100vw - 30px);
 }
 
 #container-images img {

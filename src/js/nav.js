@@ -6,6 +6,7 @@ function handleReady() {
         return setTimeout(handleReady, 100);
     }
     highlightNav();
+    switchLanguageText();
     insertPageHTML(location.hash.slice(1));
     links.on('click', function(e) {
         const pageName = e.target.id.split('-')[1];
@@ -70,14 +71,26 @@ getTranlations();
 window.switchLanguage = function() {
     const elementLang = $('#language'); 
     const language = elementLang.html();
-
+    
     // switch language displayed
     if (language === 'English') {
         elementLang.html('Español');
     } else if (language === 'Español') {
         elementLang.html('English');
+    } else if (language === 'EN') {
+        elementLang.html('ES');
+    } else {
+        elementLang.html('EN');
     }
     
+    let lang;
+    if (language === 'EN') {
+        lang = 'English';
+    } else if (language === 'ES') {
+        lang = 'Español';
+    } else {
+        lang = language;
+    }
     // insert tranlations by id
     const translationsLang = translations[language];
     for (const id in translationsLang) {
@@ -89,3 +102,23 @@ window.switchLanguage = function() {
         adjustCaptionHeight();
     }
 }
+
+// switch language text
+function switchLanguageText() {
+    const elementLang = $('#language'); 
+    const language = elementLang.html();
+    if ($(window).outerWidth(true) >= 576) {
+        if (language === 'ES') {
+            elementLang.html('English');
+        } else {
+            elementLang.html('Español');
+        }
+    } else {
+        if (language === 'English') {
+            elementLang.html('EN');
+        } else {
+            elementLang.html('ES');
+        }
+    }
+}
+$(window).on('resize', switchLanguageText);

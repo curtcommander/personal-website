@@ -12,13 +12,11 @@ const lang = process.argv[2];
 if (langs.indexOf(lang) === -1) {
     throw new Error('specify language ("en" or "sp")');
 }
-let keyLang, keyLangNot;
+let keyLang;
 if ( lang === 'en') {
     keyLang = 'English';
-    keyLangNot = 'Español'; 
 } else {
     keyLang = 'Español';
-    keyLangNot = 'English';
 }
 
 buildFiles();
@@ -33,7 +31,6 @@ function buildFiles() {
     _copyHtmlCssJs();
     _copyResume();
     _copyTranslations();
-
     //_addJsonNav();
     //_removeHTMLExt();
 }
@@ -47,7 +44,7 @@ function _buildFileStructure() {
     if (!fs.existsSync(pathLang)) {
         fs.mkdirSync(pathLang);
     }
-    const folders = ['html', 'css', 'js', 'images', 'icons'];
+    const folders = ['html', 'css', 'js', 'imagES', 'icons'];
     for (const folder of folders) {
         const pathFolder = `dist/${lang}/${folder}`;
         if (!fs.existsSync(pathFolder)) {
@@ -72,7 +69,11 @@ function _populateHtmlLang(filePath) {
 
     // set initial language in nav
     if (filePath.indexOf('nav') > -1) {
-        $('#language').html(keyLangNot);
+        if (keyLang === 'English') {
+            $('#language').html('EN');
+        } else {
+            $('#language').html('ES');
+        }
     }
 
     // write to file
@@ -85,7 +86,7 @@ function _copyIndex() {
 }
 
 function _copyIconsImages() {
-    for (const folder of ['icons', 'images']) {
+    for (const folder of ['icons', 'imagES']) {
         const files = fs.readdirSync(folder);
         for (const file of files) {
             if (folder === 'icons' || file.indexOf('drawing') === -1) {

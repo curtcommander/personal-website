@@ -2,11 +2,6 @@
     width: device-width;
 }
 
-html {
-    overflow: -moz-scrollbars-vertical;
-    overflow-y: scroll;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -22,6 +17,11 @@ body {
 }
 
 @media only screen and (min-width: 576px) {
+    html {
+        overflow: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+    }
+    
     body {
         padding-top: 48px;
     }
