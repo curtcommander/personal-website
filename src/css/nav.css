@@ -12,7 +12,7 @@ nav a:hover {
 
 #container-language {
     position: absolute;
-    top: 23px;
+    top: 12px;
     left: 16px;
     padding: 0;
     z-index: 2;
@@ -20,7 +20,8 @@ nav a:hover {
 
 #language {
     color: #F2EAED;
-    font-weight: 350;
+    font-weight: 450;
+    font-size: 26px;
 }
 
 #language:hover {
@@ -33,7 +34,7 @@ nav a:hover {
     z-index: 1;
 }
 
-#brand {
+#link-home {
     color: white;
     font-size: 24px;
     font-weight: 350;
@@ -41,6 +42,7 @@ nav a:hover {
     margin: 13px 0;
     text-align: center;
     line-height: 1.2;
+    cursor: pointer;
 }
 
 nav button {
@@ -90,7 +92,12 @@ nav button:focus {
         width: 100%;
     }
 
-    #brand {
+    #language {
+        font-weight: 350;
+        font-size: 16px;
+    }
+
+    #link-home {
         margin: 0;
     }
 

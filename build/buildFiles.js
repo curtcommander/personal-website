@@ -44,7 +44,7 @@ function _buildFileStructure() {
     if (!fs.existsSync(pathLang)) {
         fs.mkdirSync(pathLang);
     }
-    const folders = ['html', 'css', 'js', 'imagES', 'icons'];
+    const folders = ['html', 'css', 'js', 'images', 'icons'];
     for (const folder of folders) {
         const pathFolder = `dist/${lang}/${folder}`;
         if (!fs.existsSync(pathFolder)) {
@@ -70,9 +70,9 @@ function _populateHtmlLang(filePath) {
     // set initial language in nav
     if (filePath.indexOf('nav') > -1) {
         if (keyLang === 'English') {
-            $('#language').html('EN');
-        } else {
             $('#language').html('ES');
+        } else {
+            $('#language').html('EN');
         }
     }
 
@@ -86,7 +86,7 @@ function _copyIndex() {
 }
 
 function _copyIconsImages() {
-    for (const folder of ['icons', 'imagES']) {
+    for (const folder of ['icons', 'images']) {
         const files = fs.readdirSync(folder);
         for (const file of files) {
             if (folder === 'icons' || file.indexOf('drawing') === -1) {

@@ -1,61 +1,8 @@
-const pageNames = ['career', 'projects'];
+////////////////
+/// language ///
+////////////////
 
-function handleReady() {
-    const links = $('.nav-item');
-    if (links.length === 0) {
-        return setTimeout(handleReady, 100);
-    }
-    highlightNav();
-    switchLanguageText();
-    insertPageHTML(location.hash.slice(1));
-    links.on('click', function(e) {
-        const pageName = e.target.id.split('-')[1];
-        highlightNav(pageName);
-        insertPageHTML(pageName);
-    })
-}
-handleReady();
-$( document ).ready(function() {
-    handleReady();
-});
-
-$( window ).on('resize', function() {
-    highlightNav();
-});
-
-function highlightNav(pageName) {
-    $('.nav-item').removeClass('selected');
-    if ($(window).outerWidth(true) >= 576) {
-        if (pageName) {
-            $('#link-'+pageName).addClass('selected');
-        } else {
-            for (const pageName of pageNames) { 
-                if (window.location.href.search(pageName) !== -1) {
-                    $('#link-'+pageName).addClass('selected');
-                    break;
-                }
-            }
-        }
-    }
-};
-
-function insertPageHTML(pageName) {
-    let url;
-    if (pageName === '') {
-        url = 'html/home.html';
-    } else {
-        url = 'html/' + pageName + '.html';
-    }
-
-    const req = new Request(url);
-    fetch(req).then(function(response) {
-        response.text().then(function(text) {
-            $('#container-main').html(text);
-            switchLayoutCareer();
-        })
-    })
-}
-
+// get translations
 let translations;
 function getTranlations() {
     const url = 'translations.json';
@@ -68,31 +15,59 @@ function getTranlations() {
 }
 getTranlations();
 
-window.switchLanguage = function() {
-    const elementLang = $('#language'); 
-    const language = elementLang.html();
-    
-    // switch language displayed
-    if (language === 'English') {
-        elementLang.html('Español');
-    } else if (language === 'Español') {
-        elementLang.html('English');
-    } else if (language === 'EN') {
-        elementLang.html('ES');
-    } else {
-        elementLang.html('EN');
+let elementLang, lang;
+function  handleLangReady() {
+    // wait for language element
+    elementLang = $('#language');
+    if (elementLang.length === 0) {
+        return setTimeout(handleLangReady, 100);
     }
-    
-    let lang;
-    if (language === 'EN') {
-        lang = 'English';
-    } else if (language === 'ES') {
+
+    // switch between full words and abbreviations
+    switchLanguageText();
+
+    const langText = elementLang.html();
+    if (langText === 'English') {
         lang = 'Español';
+    } else if (langText === 'Español') {
+        lang = 'English';
+    } else if (langText === 'EN') {
+        lang = 'ES';
     } else {
-        lang = language;
+        lang = 'EN';
     }
+
+    // bind click event to language elements
+    elementLang.on('click', function() {
+        return changeLanguage();
+    });
+}
+handleLangReady();
+
+// change language
+function changeLanguage() {
+    // change language text
+    elementLang.html(lang);
+    if (lang === 'English') {
+        lang = 'Español';
+    } else if (lang === 'Español') {
+        lang = 'English';
+    } else if (lang === 'EN') {
+        lang = 'ES';
+    } else {
+        lang = 'EN';
+    }
+    
     // insert tranlations by id
-    const translationsLang = translations[language];
+    let keyLang;
+    if (lang === 'EN') {
+        keyLang = 'English';
+    } else if (lang === 'ES') {
+        keyLang = 'Español';
+    } else {
+        keyLang = lang;
+    }
+    const translationsLang = translations[keyLang];
     for (const id in translationsLang) {
         $('#'+id).html(translationsLang[id])
     }
@@ -103,22 +78,94 @@ window.switchLanguage = function() {
     }
 }
 
-// switch language text
+// switch language text according to width
 function switchLanguageText() {
-    const elementLang = $('#language'); 
-    const language = elementLang.html();
+    const langText = elementLang.html();
     if ($(window).outerWidth(true) >= 576) {
-        if (language === 'ES') {
+        if (langText === 'EN') {
             elementLang.html('English');
-        } else {
+            lang = 'Español';
+        } else if (langText === 'ES') {
             elementLang.html('Español');
+            lang = 'English';
         }
     } else {
-        if (language === 'English') {
+        if (langText === 'English') {
             elementLang.html('EN');
-        } else {
+            lang = 'ES';
+        } else if (langText === 'Español') {
             elementLang.html('ES');
+            lang = 'EN';
         }
     }
 }
 $(window).on('resize', switchLanguageText);
+
+/////////////
+/// pages ///
+/////////////
+
+let links, pageName;
+function handleLinksReady() {
+    links = $('.link');
+    if (links.length !== 3 || !lang) {
+        return setTimeout(handleLinksReady, 100);
+    }
+
+    pageName = location.hash.slice(1); 
+    // initial nav highlight
+    highlightNav();
+    // insert page content into body
+    // function dependent on value of lang
+    insertPageHTML();
+    
+    // bind click listener to page links
+    links.on('click', function(e) {
+        pageName = e.target.id.split('-')[1];
+        if (pageName === 'home') {
+            history.pushState("", document.title, window.location.pathname);
+        };
+        highlightNav();
+        insertPageHTML();
+        collapseMobileMenu();
+    })
+}
+handleLinksReady();
+
+function highlightNav() {
+    links.removeClass('selected');
+    if ($(window).outerWidth(true) >= 576 && pageName) {
+        $('#link-'+pageName).addClass('selected');
+    }
+}
+$( window ).on('resize', function() { highlightNav() });
+
+function insertPageHTML() {
+    let routePrefix = '';
+    if (['EN', 'English'].includes(lang)) {
+        routePrefix = '/en';
+    } else if (['ES', 'Español'].includes(lang)) {
+        routePrefix = '/sp'
+    }
+    
+    let url;
+    if (pageName === '') {
+        url = routePrefix + '/html/home.html';
+    } else {
+        url = routePrefix + '/html/' + pageName + '.html';
+    }
+
+    const req = new Request(url);
+    fetch(req).then(function(res) {
+        res.text().then(function(text) {
+            $('#container-main').html(text);
+            switchLayoutCareer();
+        })
+    })
+}
+
+function collapseMobileMenu() {
+    if ($(window).outerWidth(true) < 576) {
+        $('.navbar-collapse').collapse('hide');
+    }
+}
