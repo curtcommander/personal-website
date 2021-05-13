@@ -1,39 +1,73 @@
-var pages = ['career', 'projects', 'gallery'];
-function highlightNav() {
-    if ($( window ).outerWidth(true) >= 576) {  
-        for (p=0; p<pages.length; p++) {
-            if (window.location.href.search(pages[p]) != -1) {
-                const queryString = '#link-'+pages[p];
-                if ($( queryString ).length == 1) {
-                    $( queryString ).css({
-                        'font-weight' : '650' 
-                    })
-                    break
-                } else {
-                    setTimeout(highlightNav, 100);
+const pageNames = ['career', 'projects'];
+
+function handleReady() {
+    const links = $('.nav-item');
+    if (links.length === 0) {
+        return setTimeout(handleReady, 100);
+    }
+    highlightNav();
+    insertPageHTML(location.hash.slice(1));
+    links.on('click', function(e) {
+        const pageName = e.target.id.split('-')[1];
+        highlightNav(pageName);
+        insertPageHTML(pageName);
+    })
+}
+handleReady();
+$( document ).ready(function() {
+    handleReady();
+});
+
+$( window ).on('resize', function() {
+    highlightNav();
+});
+
+function highlightNav(pageName) {
+    $('.nav-item').removeClass('selected');
+    if ($(window).outerWidth(true) >= 576) {
+        if (pageName) {
+            $('#link-'+pageName).addClass('selected');
+        } else {
+            for (const pageName of pageNames) { 
+                if (window.location.href.search(pageName) !== -1) {
+                    $('#link-'+pageName).addClass('selected');
+                    break;
                 }
-                
             }
-        }   
-    } else {
-        $(' li a').css({
-            'font-weight' : '400'
-        })
+        }
     }
 };
-highlightNav();
-$( document ).ready(() => {
-    highlightNav()
-    // include line below so terser doesn't drop switchLanguage
-    $( '#language' ).on('click', switchLanguage);
-});
-$( document ).on('load', highlightNav);
-$( window ).on('resize', highlightNav);
 
-// updated with data in translations.json
-const translations = {};
+function insertPageHTML(pageName) {
+    let url;
+    if (pageName === '') {
+        url = 'html/home.html';
+    } else {
+        url = 'html/' + pageName + '.html';
+    }
 
-function switchLanguage() {
+    const req = new Request(url);
+    fetch(req).then(function(response) {
+        response.text().then(function(text) {
+            $('#container-main').html(text);
+            switchLayoutCareer();
+        })
+    })
+}
+
+let translations;
+function getTranlations() {
+    const url = 'translations.json';
+    const req = new Request(url);
+    return fetch(req).then(function(response) {
+        return response.text().then(function(text) {
+            translations = JSON.parse(text);
+        })
+    })
+}
+getTranlations();
+
+window.switchLanguage = function() {
     const elementLang = $('#language'); 
     const language = elementLang.html();
 
@@ -51,7 +85,7 @@ function switchLanguage() {
     }
 
     // adjust caption heights on career page following text change
-    if (window.location.pathname.indexOf('career') > -1) {
+    if (location.hash.slice(1) === 'career') {
         adjustCaptionHeight();
     }
 }

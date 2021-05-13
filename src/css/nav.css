@@ -80,6 +80,10 @@ nav button:focus {
     color: white;
 }
 
+.selected {
+    font-weight: 650;
+}
+
 @media only screen and (min-width: 576px) {
     #container-language {
         position: unset;

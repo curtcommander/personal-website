@@ -1,8 +1,8 @@
 'use strict';
 
 // lambda@edge function
-// edgelambda.amazonaws.com needs to be able to assume
-// execution role
+// edgelambda.amazonaws.com needs to be able
+// to assume execution role
 
 exports.handler = (event, context, callback) => {
     const request = event.Records[0].cf.request;
@@ -12,6 +12,7 @@ exports.handler = (event, context, callback) => {
     if (request.uri === '/wilmington-shootings/') {
         request.uri = '/wilmington-shootings/index.html';
     } else {
+        /*
         // map pages to html files
         const pages = ['career', 'projects'];
         for (const page of pages) {
@@ -19,6 +20,7 @@ exports.handler = (event, context, callback) => {
                 request.uri += '.html';
             }
         }
+        */
 
         // serve language-specific content
         const pathEN = '/en';

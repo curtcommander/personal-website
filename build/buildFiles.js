@@ -5,7 +5,7 @@ const { JSDOM } = require( "jsdom" );
 const fs = require('fs');
 
 const translations = JSON.parse(fs.readFileSync('src/translations.json').toString());
-const filePaths = ['index.html', 'career.html', 'projects.html', 'html/nav.html'];
+const filePaths = ['home.html', 'career.html', 'projects.html', 'nav.html'];
 const langs = ['en', 'sp'];
 
 const lang = process.argv[2];
@@ -28,10 +28,13 @@ function buildFiles() {
     for (const filePath of filePaths) {
         _populateHtmlLang(filePath);
     }
-    _addJsonNav();
+    _copyIndex();
     _copyIconsImages();
-    _copyCssJs();
+    _copyHtmlCssJs();
     _copyResume();
+    _copyTranslations();
+
+    //_addJsonNav();
     //_removeHTMLExt();
 }
 
@@ -55,7 +58,7 @@ function _buildFileStructure() {
 
 function _populateHtmlLang(filePath) {
     // read file and get dom
-    const fileString = fs.readFileSync(`src/${filePath}`).toString();
+    const fileString = fs.readFileSync(`src/html/${filePath}`).toString();
     const jsdom = new JSDOM(fileString);
     const $ = require('jquery')(jsdom.window);
 
@@ -74,16 +77,11 @@ function _populateHtmlLang(filePath) {
 
     // write to file
     const html = jsdom.serialize();
-    fs.writeFileSync(`dist/${lang}/${filePath}`, html);
+    fs.writeFileSync(`dist/${lang}/html/${filePath}`, html);
 }
 
-// add translations object to nav.js
-function _addJsonNav() {
-    let navJs = fs.readFileSync('src/js/nav.js').toString();
-    const translationsStatementOld = navJs.match(/const translations .*/g)[0];
-    const translationsStatementNew = `const translations = ${JSON.stringify(translations)}`;
-    navJs = navJs.replace(translationsStatementOld, translationsStatementNew);
-    fs.writeFileSync(`dist/${lang}/js/nav.js`, navJs);
+function _copyIndex() {
+    fs.copyFileSync(`src/index.html`, `dist/${lang}/index.html`);
 }
 
 function _copyIconsImages() {
@@ -97,11 +95,11 @@ function _copyIconsImages() {
     }
 }
 
-function _copyCssJs() {
+function _copyHtmlCssJs() {
     for (const folder of ['html', 'css', 'js']) {
         const files = fs.readdirSync(`src/${folder}`);
         for (const file of files) {
-            if (['nav.html', 'nav.js'].indexOf(file) === -1) {
+            if (filePaths.indexOf(file) === -1) {
                 fs.copyFileSync(`src/${folder}/${file}`, `dist/${lang}/${folder}/${file}`);
             } else {
             }
@@ -110,7 +108,21 @@ function _copyCssJs() {
 }
 
 function _copyResume() {
-    fs.copyFileSync(`docs/resume_curt_commander.pdf`, `dist/${lang}/resume_curt_commander.pdf`)
+    fs.copyFileSync(`docs/resume_curt_commander.pdf`, `dist/${lang}/resume_curt_commander.pdf`);
+}
+
+function _copyTranslations() {
+    fs.copyFileSync(`src/translations.json`, `dist/${lang}/translations.json`);
+}
+
+
+// add translations object to nav.js
+function _addJsonNav() {
+    let navJs = fs.readFileSync('src/js/nav.js').toString();
+    const translationsStatementOld = navJs.match(/const translations .*/g)[0];
+    const translationsStatementNew = `const translations = ${JSON.stringify(translations)}`;
+    navJs = navJs.replace(translationsStatementOld, translationsStatementNew);
+    fs.writeFileSync(`dist/${lang}/js/nav.js`, navJs);
 }
 
 function _removeHTMLExt() {

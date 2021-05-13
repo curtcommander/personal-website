@@ -1,10 +1,8 @@
-#container-main {
-    padding: 0;
-}
 
 #container-images {
     padding: 0;
     margin: 15px;
+    width: calc(100vw - 30px);
 }
 
 #container-images img {
@@ -83,7 +81,7 @@
         transform: scale(1.005);
     }
     
-    #container-main img {
+    #container-images img {
         margin-bottom: 0;
         border-radius: 0;
         position: relative;
@@ -107,11 +105,11 @@
         display: none;
     }
 
-    #container-main p:first-of-type {
+    #container-images p:first-of-type {
         margin-top: 0;
     }
     
-    #container-main p:last-of-type {
+    #container-images p:last-of-type {
         margin-bottom: 0;
     }
 }
