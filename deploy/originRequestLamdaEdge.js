@@ -12,23 +12,13 @@ exports.handler = (event, context, callback) => {
     if (request.uri === '/wilmington-shootings/') {
         request.uri = '/wilmington-shootings/index.html';
     } else {
-        /*
-        // map pages to html files
-        const pages = ['career', 'projects'];
-        for (const page of pages) {
-            if (request.uri.slice(request.uri.length - page.length) === page) {
-                request.uri += '.html';
-            }
-        }
-        */
-
         // serve language-specific content
         const pathEN = '/en';
         const pathSP = '/sp';
         const beginning = request.uri.slice(0,3);
         if (headers['cloudfront-viewer-country']
             && ![pathEN, pathSP].includes(beginning)
-            && request.uri.indexOf('wilmington-shootings') === -1
+            && request.uri.indexOf('wilmington-shootings') !== 1
         ) {
             const countryCode = headers['cloudfront-viewer-country'][0].value;
             const countriesES = [
