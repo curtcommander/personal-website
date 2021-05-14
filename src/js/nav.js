@@ -148,6 +148,8 @@ function insertPageHTML() {
         routePrefix = '/sp'
     }
     
+    //routePrefix = '..' + routePrefix;
+    
     let url;
     if (pageName === '') {
         url = routePrefix + '/html/home.html';
