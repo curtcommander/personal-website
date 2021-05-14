@@ -112,22 +112,30 @@ function handleLinksReady() {
         return setTimeout(handleLinksReady, 100);
     }
 
-    pageName = location.hash.slice(1); 
+    pageName = location.hash.slice(1);
+
     // initial nav highlight
     highlightNav();
+
     // insert page content into body
-    // function dependent on value of lang
+    // dependent on value of lang
     insertPageHTML();
-    
+
     // bind click listener to page links
     links.on('click', function(e) {
         pageName = e.target.id.split('-')[1];
         if (pageName === 'home') {
             history.pushState("", document.title, window.location.pathname);
-        };
+        }
         highlightNav();
         insertPageHTML();
         collapseMobileMenu();
+    })
+
+    // freeze link widths to prevent flickering
+    elementLang.on('click', function() {
+        unfreezeLinksWidth();
+        freezeLinksWidth();
     })
 }
 handleLinksReady();
@@ -148,7 +156,7 @@ function insertPageHTML() {
         routePrefix = '/sp'
     }
     
-    //routePrefix = '..' + routePrefix;
+    routePrefix = '..' + routePrefix;
     
     let url;
     if (pageName === '') {
@@ -170,4 +178,15 @@ function collapseMobileMenu() {
     if ($(window).outerWidth(true) < 576) {
         $('.navbar-collapse').collapse('hide');
     }
+}
+
+function unfreezeLinksWidth() {
+    links.each(function() {
+        $(this).width('unset');
+    })
+}
+function freezeLinksWidth() {
+    links.each(function() {
+        $(this).width($(this).width());
+    })    
 }
