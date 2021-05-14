@@ -3,6 +3,7 @@
 
 const { JSDOM } = require( "jsdom" );
 const fs = require('fs');
+const path = require('path');
 
 const translations = JSON.parse(fs.readFileSync('src/translations.json').toString());
 const filePaths = ['home.html', 'career.html', 'projects.html', 'nav.html'];
@@ -89,7 +90,7 @@ function _copyIconsImages() {
     for (const folder of ['icons', 'images']) {
         const files = fs.readdirSync(folder);
         for (const file of files) {
-            if (folder === 'icons' || file.indexOf('drawing') === -1) {
+            if (folder === 'icons' || path.extname(file) === '.webp') {
                 fs.copyFileSync(`${folder}/${file}`, `dist/${lang}/${folder}/${file}`);
             }
         }
