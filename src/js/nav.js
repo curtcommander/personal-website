@@ -158,7 +158,7 @@ function insertPageHTML() {
         routePrefix = '/sp'
     }
     
-    //routePrefix = '..' + routePrefix;
+    routePrefix = '..' + routePrefix;
     
     let url;
     if (pageName === '') {
@@ -181,6 +181,13 @@ function collapseMobileMenu() {
         $('.navbar-collapse').collapse('hide');
     }
 }
+
+$(window).on('resize', function() {
+    if ($(window).outerWidth(true) > 576) {
+        $('.navbar-collapse').collapse('hide');
+    }
+})
+
 
 function unfreezeLinksWidth() {
     links.each(function() {
