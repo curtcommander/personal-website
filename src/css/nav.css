@@ -77,6 +77,7 @@ nav button:focus {
 .nav-item {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
+    width: 100%;
     padding: 8px 0;
     font-weight: 350;
     color: white;

@@ -134,8 +134,10 @@ function handleLinksReady() {
 
     // freeze link widths to prevent flickering
     elementLang.on('click', function() {
-        unfreezeLinksWidth();
-        freezeLinksWidth();
+        if ($(window).outerWidth(true) >= 576) {
+            unfreezeLinksWidth();
+            freezeLinksWidth();
+        }
     })
 }
 handleLinksReady();
@@ -146,7 +148,7 @@ function highlightNav() {
         $('#link-'+pageName).addClass('selected');
     }
 }
-$( window ).on('resize', function() { highlightNav() });
+$( window ).on('resize', highlightNav);
 
 function insertPageHTML() {
     let routePrefix = '';
@@ -156,7 +158,7 @@ function insertPageHTML() {
         routePrefix = '/sp'
     }
     
-    routePrefix = '..' + routePrefix;
+    //routePrefix = '..' + routePrefix;
     
     let url;
     if (pageName === '') {
@@ -190,3 +192,10 @@ function freezeLinksWidth() {
         $(this).width($(this).width());
     })    
 }
+$(window).on('resize', function() {
+    if ($(window).outerWidth(true) < 576) {
+        unfreezeLinksWidth();
+    } else {
+        freezeLinksWidth();
+    }
+})
