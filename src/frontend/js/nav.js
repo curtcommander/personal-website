@@ -5,8 +5,8 @@
 // get translations
 let translations;
 function getTranlations() {
-    const url = 'translations.json';
-    const req = new Request(url);
+    const uri = 'translations.json';
+    const req = new Request(uri);
     return fetch(req).then(function(response) {
         return response.text().then(function(text) {
             translations = JSON.parse(text);
@@ -151,23 +151,16 @@ function highlightNav() {
 $( window ).on('resize', highlightNav);
 
 function insertPageHTML() {
-    let routePrefix = '';
+    if (pageName === '') pageName = 'home';
+    
+    let uri;
     if (['EN', 'English'].includes(lang)) {
-        routePrefix = '/en';
+        uri = `/html/en/${pageName}.html`;
     } else if (['ES', 'Español'].includes(lang)) {
-        routePrefix = '/sp'
+        uri = `/html/sp/${pageName}.html`;
     }
     
-    routePrefix = '..' + routePrefix;
-    
-    let url;
-    if (pageName === '') {
-        url = routePrefix + '/html/home.html';
-    } else {
-        url = routePrefix + '/html/' + pageName + '.html';
-    }
-
-    const req = new Request(url);
+    const req = new Request(uri);
     fetch(req).then(function(res) {
         res.text().then(function(text) {
             $('#container-main').html(text);

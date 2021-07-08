@@ -1,7 +1,5 @@
-LANG=$1
-
 # minify js
- find dist/$LANG/js/ -type f \
+ find dist/frontend/js/ -type f \
     -name "*.js" ! -name "*.min.*" \
     -exec terser -c toplevel -o {}.min -- {} \; \
     -exec rm {} \; \
@@ -9,7 +7,7 @@ LANG=$1
     #-exec echo "minified "{} \;
 
 # minify css
-find dist/$LANG/css/ -type f \
+find dist/frontend/css/ -type f \
     -name "*.css" ! -name "*.min.*" \
     -exec cleancss -o {}.min {} \; \
     -exec rm {} \; \

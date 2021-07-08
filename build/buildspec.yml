@@ -11,12 +11,8 @@ phases:
       - npm install jquery
   build:
     commands:
-      - echo Build started on `date`
-      - bash build/build.sh
-  post_build:
-    commands:
-      - echo Build completed on `date`
+      - bash build/frontend.sh
 artifacts:
-  base-directory: dist
+  base-directory: dist/frontend
   files:
     - '**/*'

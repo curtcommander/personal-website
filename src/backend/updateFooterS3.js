@@ -17,26 +17,29 @@ async function updateFooterS3(event, context) {
 
     let response;
     const bucket = 'curtcommander-personal-website';
-    const langs = ['en', 'sp'];
-    for (const lang of langs) {
-        try {
-            const key = `${lang}/html/footer.html`;
-            let html = await getS3Object(bucket, key);
-            
-            const tag = html.match('<p id="copyright">.*?</p>')[0];
-            const newTagVal = `\u00A9 Curt Commander | ${new Date().getFullYear()}`; 
-            const newTag = `<p id="copyright">${newTagVal}</p>`;
-            html = html.replace(tag, newTag);
-    
-            await putS3Object(bucket, key, html);
+    try {
+        // get object
+        const key = `html/en/footer.html`;
+        let html = await getS3Object(bucket, key);
+        
+        // update year
+        const tag = html.match('<p id="copyright">.*?</p>')[0];
+        const newTagVal = `\u00A9 Curt Commander | ${new Date().getFullYear()}`; 
+        const newTag = `<p id="copyright">${newTagVal}</p>`;
+        html = html.replace(tag, newTag);
 
-        } catch (err) {
-            response = {
-                statusCode: 500,
-                body: err.stack
-            };
-            break;
+        // write new object
+        const langs = ['en', 'sp'];
+        for (const lang of langs) {
+            const key = `html/${lang}/footer.html`;
+            await putS3Object(bucket, key, html);
         }
+
+    } catch (err) {
+        response = {
+            statusCode: 500,
+            body: err.stack
+        };
     }
 
     if (!response) {
