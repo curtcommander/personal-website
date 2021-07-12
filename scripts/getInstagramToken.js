@@ -35,7 +35,7 @@ async function _getAuthCode() {
     });      
     console.log(`Visit the following url and enter the url instragram redirects to:\n`)
     console.log(`https://api.instagram.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=user_profile,user_media&response_type=code\n`);
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         rl.question('Redirected url: ', url => {
             rl.close();
             const queryString = url.slice(redirectUri.length+1, url.length-2);

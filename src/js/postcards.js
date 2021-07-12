@@ -4,49 +4,53 @@
 
 // toggle caption when image clicked (smaller screens)
 $(document).ready(function() {
-    $( '.div-images' ).click(function() {
-        const thisCaption = $(this).find('.caption');
-        if (window.innerWidth < 992 ) {
+    $('.container-postcard').click(function() {
+        const thisCaption = $(this).find('.container-caption');
+        if (
+            (pageName === 'career' && window.innerWidth < 992)
+        ) {
              if (thisCaption.hasClass('hide')) {
-                $( '.caption' ).addClass('hide');
+                $('.container-caption').addClass('hide');
                 thisCaption.removeClass('hide');
              } else {
                 thisCaption.addClass('hide');
              }
         }
     })
-    
 })
 
 // toggle image selection
-var events = 'click touch'
+var events = 'click touch';
 var flagCaption = false;
-$( document ).ready(function() {
-    $( '.div-images' ).on(events, function() {
-        // add image background and display caption text
+$(document).ready(function() {
+    $('.container-postcard').on(events, function() {
+        // add image background and display.container-caption text
         if (!flagCaption) {
-            $( '.img-background' ).css('background-color', '#2a3457');
-            $( '.caption' ).css('display', 'unset');
+            $('.container-image').css('background-color', '#2a3457');
+            $('.container-caption').css('display', 'unset');
             flagCaption = true;
         }
-        _toggleCaption($(this).find('img'));
+        toggleCaption($(this).find('img'));
     });
 })
 
-function _toggleCaption(t) {
+function toggleCaption(t) {
     if (t.hasClass('clicked')) {
         t.removeClass('clicked');
     } else {
-        $( '.div-images img' ).removeClass('clicked');
+        $('.container-postcard img').removeClass('clicked');
         t.addClass('clicked');
     }
 }
 
 // unselect image
-$( '*' ).on(events, function(e) {
+$('*').on(events, function(e) {
     window.e = e;
-    if (e.target.nodeName !== 'IMG' && e.target.classList[0] !== 'info' && e.target.id !== 'language' ) {
-       $( '.div-images img' ).removeClass('clicked');
+    if (e.target.nodeName !== 'IMG' && 
+        e.target.classList[0] !== 'info' && 
+        e.target.id !== 'language'
+    ) {
+       $('.container-postcard img').removeClass('clicked');
     }
 })
 
@@ -55,21 +59,18 @@ $( '*' ).on(events, function(e) {
 //////////////////////////////
 
 function adjustCaptionHeight() {
-    var heightImg = $( '.div-images img' ).height();
+    var heightImg = $('.container-postcard img').height();
     if (!heightImg) {
         return setTimeout(adjustCaptionHeight, 100);
     }
-    $( '.caption' ).each(function () {
+    $('.container-caption').each(function () {
         cap = $(this);
         var top = (heightImg - cap.height())/2;
         cap.css('top', top);
     });
 }
 
-$( document ).ready(adjustCaptionHeight);
-
-//const width = $(window).width()
-//const height = $(window).height();
+$(document).ready(adjustCaptionHeight);
 $(window).resize(function() {
     setTimeout(function() {
         adjustCaptionHeight();

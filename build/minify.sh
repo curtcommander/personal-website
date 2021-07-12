@@ -1,7 +1,7 @@
 # minify js
  find dist/frontend/js/ -type f \
     -name "*.js" ! -name "*.min.*" \
-    -exec terser -c toplevel -o {}.min -- {} \; \
+    -exec terser -c toplevel --keep-fnames -o {}.min -- {} \; \
     -exec rm {} \; \
     -exec mv {}.min {} \; \
     #-exec echo "minified "{} \;

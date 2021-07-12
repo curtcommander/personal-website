@@ -2,6 +2,7 @@
     "English": {
         "link-career": "Career",
         "link-projects": "Projects",
+        "link-gallery": "Gallery",
 
         "title": "Full-Stack Developer | Solutions Architect",
         "desc": "I'm passionate about building systems and love talking about the tech projects I've been working on. Currently, I'm lending my services to TCP Global, a non-profit that funds microloan programs around the world. The solution I’ve been developing automates this organization’s data collection and reporting processes. Read this <a href='https://tcpglobal.systems'>technical overview</a> for more information about the system I’m building which I naturally also manage as TCP Global's Director of Technology Systems.",
@@ -26,12 +27,17 @@
         
         "info-tcp-global": "Data collection and reporting system for a microloan non-profit",
         "info-utils-google-drive": "Node package for interacting with Google Drive",
-        "info-wilmington-shootings": "Web app visualizing data on shootings in Wilmington, DE"
+        "info-wilmington-shootings": "Web app visualizing data on shootings in Wilmington, DE",
 
+        "caption-noche-de-velitas": "5am Colombian winter wonderland featured games, a dance competition, and hot chocolate",
+        "caption-virgen-del-carmen": "Pyrotechnics show celebrating la Virgen del Carmen",
+        "caption-boat-pinto": "The boat I take to get to the town up the river"
     },
+    
     "Español": {
         "link-career": "Carrera",
         "link-projects": "Proyectos",
+        "link-gallery": "Galería",
         
         "title" : "Desarrollador de Software | Ingeniero de Sistemas",
         "desc": "Me apasiona construir sistemas y me gusta hablar de los proyectos de tecnología que estoy realizando. Actualmente le estoy prestando mis servicios a TCP Global, la cual es una ONG que financia proyectos de microcréditos mundialmente. La solución que estoy desarrollando para esta organización automatiza sus procesos de reunión de datos y de información. Lea esta <a href='https://tcpglobal.systems'>descripción general técnica</a> para más detalles sobre el sistema que estoy construyendo y que gestiono como el director de sistemas tecnológicas de TCP Global.",
@@ -56,6 +62,10 @@
 
         "info-tcp-global": "Sistema de reunión de datos e informes para una ONG de microcréditos",
         "info-utils-google-drive": "Paquete de software Node para interactuar con Google Drive",
-        "info-wilmington-shootings": "Aplicación web visualizando datos sobre disparos en Wilmginton, DE"
+        "info-wilmington-shootings": "Aplicación web visualizando datos sobre disparos en Wilmginton, DE",
+
+        "caption-noche-de-velitas": "Se celebró la noche de velitas en el barrio con juegos, un consurso de baile, y chocolate caliente",
+        "caption-virgen-del-carmen": "El castillo en el día la Virgen del Carmen",
+        "caption-boat-pinto": "El barco que cojo para ir a la ciudad al otro lado del río"
     }
 }

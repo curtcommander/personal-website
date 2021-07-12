@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 'use strict';
 
-const { JSDOM } = require( "jsdom" );
+const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
 
+const { serialize } = require('../scripts/serialize');
+const { switchDateFormat } = require('../src/js/switchDateFormat');
+
 const langs = ['en', 'sp'];
-const pathSrc = 'src/frontend';
+const pathSrc = 'src';
 const pathDest = 'dist/frontend';
 
 const translations = JSON.parse(fs.readFileSync(`${pathSrc}/translations.json`).toString());
-const filenamesHtml = ['home.html', 'career.html', 'projects.html', 'nav.html'];
+const filenamesHtml = ['home.html', 'career.html', 'projects.html', 'gallery.html', 'nav.html'];
 
 buildFiles();
 
@@ -70,17 +73,22 @@ function _populateHtmlLang() {
                 }
             }
 
-            // set initial language in nav
+            // set language text in nav
             if (filename === 'nav.html') {
-                if (lang === 'sp') {
+                if (lang === 'en') {
                     $('#language').html('ES');
                 } else {
                     $('#language').html('EN');
                 }
             }
 
+            // change date formats
+            if (lang === 'sp' && filename === 'gallery.html') {
+                switchDateFormat($);
+            }
+
             // write to file
-            const html = jsdom.serialize();
+            const html = serialize(jsdom);
             fs.writeFileSync(`${pathDest}/html/${lang}/${filename}`, html);
         }
     }

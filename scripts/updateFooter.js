@@ -5,18 +5,16 @@ aws.config.update({region: 'us-east-1'});
 const s3 = new aws.S3({});
 const codepipeline = new aws.CodePipeline();
 
-let jobId;
+exports.handler = updateFooter;
 
-exports.handler = updateFooterS3;
-
-async function updateFooterS3(event, context) {
+async function updateFooter(event, context) {
     let jobId;
     try {
         jobId = event["CodePipeline.job"].id;
     } catch {}
 
     let response;
-    const bucket = 'curtcommander-personal-website';
+    const bucket = 'personal-website-curtcommander';
     try {
         // get object
         const key = `html/en/footer.html`;

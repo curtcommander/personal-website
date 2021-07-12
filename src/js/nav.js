@@ -2,21 +2,21 @@
 /// language ///
 ////////////////
 
+let elementLang, lang;
+let pageName = location.hash.slice(1);
+
 // get translations
-let translations;
-function getTranlations() {
+async function getTranlations() {
     const uri = 'translations.json';
     const req = new Request(uri);
-    return fetch(req).then(function(response) {
-        return response.text().then(function(text) {
-            translations = JSON.parse(text);
-        })
-    })
+    const res = await fetch(req);
+    const text = await res.text();
+    return JSON.parse(text);
 }
-getTranlations();
+let translations;
+getTranlations().then(data => translations = data);
 
-let elementLang, lang;
-function  handleLangReady() {
+function handleLangReady() {
     // wait for language element
     elementLang = $('#language');
     if (elementLang.length === 0) {
@@ -24,8 +24,9 @@ function  handleLangReady() {
     }
 
     // switch between full words and abbreviations
-    switchLanguageText();
+    switchLayoutLanguage();
 
+    // get lang
     const langText = elementLang.html();
     if (langText === 'English') {
         lang = 'Español';
@@ -38,16 +39,17 @@ function  handleLangReady() {
     }
 
     // bind click event to language elements
-    elementLang.on('click', function() {
-        return changeLanguage();
-    });
+    elementLang.on('click', changeLanguage);
 }
 handleLangReady();
 
 // change language
+// switch between ensligh and spanish
 function changeLanguage() {
     // change language text
     elementLang.html(lang);
+
+    // get new lang
     if (lang === 'English') {
         lang = 'Español';
     } else if (lang === 'Español') {
@@ -67,21 +69,26 @@ function changeLanguage() {
     } else {
         keyLang = lang;
     }
+
     const translationsLang = translations[keyLang];
     for (const id in translationsLang) {
         $('#'+id).html(translationsLang[id])
     }
 
+    // switch date format
+    switchDateFormat($);
+
     // adjust caption heights on career page following text change
-    if (location.hash.slice(1) === 'career') {
+    if (['career', 'gallery'].includes(pageName)) {
         adjustCaptionHeight();
     }
 }
 
-// switch language text according to width
-function switchLanguageText() {
+// change language text according to width
+// switch between full words and abbreviations
+function switchLayoutLanguage() {
     const langText = elementLang.html();
-    if ($(window).outerWidth(true) >= 576) {
+    if (window.innerWidth >= 576) {
         if (langText === 'EN') {
             elementLang.html('English');
             lang = 'Español';
@@ -99,20 +106,19 @@ function switchLanguageText() {
         }
     }
 }
-$(window).on('resize', switchLanguageText);
+$(window).on('resize', switchLayoutLanguage);
 
 /////////////
 /// pages ///
 /////////////
 
-let links, pageName;
+let links;
+
 function handleLinksReady() {
     links = $('.link');
-    if (links.length !== 3 || !lang) {
+    if (links.length !== 4 || !lang) {
         return setTimeout(handleLinksReady, 100);
     }
-
-    pageName = location.hash.slice(1);
 
     // initial nav highlight
     highlightNav();
@@ -134,7 +140,7 @@ function handleLinksReady() {
 
     // freeze link widths to prevent flickering
     elementLang.on('click', function() {
-        if ($(window).outerWidth(true) >= 576) {
+        if (window.innerWidth >= 576) {
             unfreezeLinksWidth();
             freezeLinksWidth();
         }
@@ -143,14 +149,14 @@ function handleLinksReady() {
 handleLinksReady();
 
 function highlightNav() {
-    links.removeClass('selected');
-    if ($(window).outerWidth(true) >= 576 && pageName) {
+    if (window.innerWidth >= 576 && pageName) {
+        links.removeClass('selected');
         $('#link-'+pageName).addClass('selected');
     }
 }
-$( window ).on('resize', highlightNav);
+$(window).on('resize', highlightNav);
 
-function insertPageHTML() {
+async function insertPageHTML() {
     if (pageName === '') pageName = 'home';
     
     let uri;
@@ -161,39 +167,39 @@ function insertPageHTML() {
     }
     
     const req = new Request(uri);
-    fetch(req).then(function(res) {
-        res.text().then(function(text) {
-            $('#container-main').html(text);
-            switchLayoutCareer();
-        })
-    })
+    const res = await fetch(req);
+    const text = await res.text();
+    $('#container-main').html(text);
+
+    switchLayoutPostcards();
 }
 
 function collapseMobileMenu() {
-    if ($(window).outerWidth(true) < 576) {
+    if (window.innerWidth < 576) {
         $('.navbar-collapse').collapse('hide');
     }
 }
 
 $(window).on('resize', function() {
-    if ($(window).outerWidth(true) > 576) {
+    if (window.innerWidth > 576) {
         $('.navbar-collapse').collapse('hide');
     }
 })
-
 
 function unfreezeLinksWidth() {
     links.each(function() {
         $(this).width('unset');
     })
 }
+
 function freezeLinksWidth() {
     links.each(function() {
         $(this).width($(this).width());
     })    
 }
+
 $(window).on('resize', function() {
-    if ($(window).outerWidth(true) < 576) {
+    if (window.innerWidth < 576) {
         unfreezeLinksWidth();
     } else {
         freezeLinksWidth();
