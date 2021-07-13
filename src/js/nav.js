@@ -149,12 +149,9 @@ function handleLinksReady() {
 handleLinksReady();
 
 function highlightNav() {
-    if (window.innerWidth >= 576 && pageName) {
-        links.removeClass('selected');
-        $('#link-'+pageName).addClass('selected');
-    }
+    links.removeClass('selected');
+    $('#link-'+pageName).addClass('selected');
 }
-$(window).on('resize', highlightNav);
 
 async function insertPageHTML() {
     if (pageName === '') pageName = 'home';
