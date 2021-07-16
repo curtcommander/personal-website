@@ -127,6 +127,9 @@ function handleLinksReady() {
     // dependent on value of lang
     insertPageHTML();
 
+    // initial freeze link width
+    freezeLinksWidth();
+
     // bind click listener to page links
     links.on('click', function(e) {
         pageName = e.target.id.split('-')[1];
